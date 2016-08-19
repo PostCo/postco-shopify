@@ -17,6 +17,9 @@ jQuery.loadScript = function(url, options) {
   return jQuery.ajax( options );
 };
 
+jQuery.loadScript('https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.0/remodal.min.js')
+jQuery.loadScript('https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js')
+
 (function () {
   /* Build the url for each injection element to get the source's html. */
   var createApiUrl = function () {
@@ -168,15 +171,12 @@ jQuery.loadScript = function(url, options) {
 
 // 2. Remodal
 var initializeRemodal = function initializeRemodal() {
-  jQuery.loadScript('https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.0/remodal.min.js')
   $('.remodal').remodal();
 };
 
 // 3. Selectize
 
 var initializeSelectize = function initializeSelectize() {
-  jQuery.loadScript('https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js')
-
   var plugin = document.getElementById("postco-plugin");
   var retailerAuthToken = plugin.dataset.pcApi;
 
