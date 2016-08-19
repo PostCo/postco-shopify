@@ -17,8 +17,6 @@ jQuery.loadScript = function(url, options) {
   return jQuery.ajax( options );
 };
 
-$.loadScript('https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js')
-
 (function () {
   /* Build the url for each injection element to get the source's html. */
   var createApiUrl = function () {
@@ -141,6 +139,7 @@ $.loadScript('https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/stan
         /* Inject the html. */
         injectee.innerHTML = body.innerHTML || body.xml || response;
 
+				$.getScript('https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js')
 				$.loadScript('https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.0/remodal.min.js').done(function( script, textStatus ) {
 					initializeRemodal();
 				})
