@@ -1,42 +1,11 @@
-<div class="p-btns">
-  <a id="js-postco-false" class="p-btn"><i class="icon-truck"></br></i>Shipping</a>
-  <a id="js-postco-true" class="p-btn"><i class="icon-shop"></br></i>Self-Collect</a>
-</div>
-
-<div class="p-container">
-  <fieldset id="js-postco-fields" class="p-fields">
-    <h3>Select PostCo Location</h3>
-    <p class="p-search">
-      <select id="postco-agent" name="attributes[postco-agent-id]", placeholder="Search location by name or address">
-      </select>
-    </p>
-    <p>Please select <strong>Standard Shipping + PostCo</strong> as the preferred shipping method to receive your unique Collection Code.</p>
-    <a data-remodal-target="modal">What is PostCo?</a>
-  </fieldset>
-</div>
-
-<div class="remodal" data-remodal-id="modal">
-  <button data-remodal-action="close" class="remodal-close" style="right:0;left:auto;"></button>
-  <a href="https://postco.com.my">
-    <img src="https://postco-staging.herokuapp.com/assets/logo/dark.png" width="200">
-  </a>
-  <p>
-    No more waiting at home for your parcel deliveries! You can now self-collect your parcels from our network of local cafes and pharmacies anytime even after work and during the weekends.
-  </p>
-</div>
-
-<script>
-  const url = "https://postco.com.my";
-  const credential = "{API KEY}";
-</script>
+<section id="postco-plugin" data-pc-src="https://postco.com.my/plugins/v1/shopify" data-pc-api="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJzaWduZWRfYXQiOiIyMDE2LTA4LTA5IDE3OjA4OjIzICswODAwIn0.IA1-M1texBHVb1pIVZvWjL36dRSFi0qiTt7XyPzJ-kU" data-pc-env="dev"></section>
 
 {{ '//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js' | script_tag }}
 {{ '//cdnjs.cloudflare.com/ajax/libs/remodal/1.1.0/remodal.min.js' | script_tag }}
-{{ '//postco.com.my/plugins/v1/javascripts/shopify.js' | script_tag }}
-
+{{ '//postco.com.my/plugins/v1/javascripts/shopify.min.js' | script_tag }}
 
 {{ '//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/css/selectize.min.css' | stylesheet_tag }}
 {{ '//cdnjs.cloudflare.com/ajax/libs/remodal/1.1.0/remodal.min.css' | stylesheet_tag }}
 {{ '//cdnjs.cloudflare.com/ajax/libs/remodal/1.1.0/remodal-default-theme.min.css' | stylesheet_tag }}
 {{ '//file.myfontastic.com/zUbV4Ems2MSXDp23aeUkta/icons.css' | stylesheet_tag }}
-{{ '//postco.com.my/plugins/v1/stylesheets/shopify.css' | stylesheet_tag }}
+{{ '//postco.com.my/plugins/v1/stylesheets/shopify.min.css' | stylesheet_tag }}

@@ -1,0 +1,86 @@
+.remodal {
+  min-height: 200px;
+
+  img {
+    width: 200px;
+  }
+}
+
+.remodal-close {
+  right: 0;
+  left: auto;
+}
+
+#postco-app {
+  #js-postco-widget {
+    display: none;
+  }
+
+  .pc-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 20px;
+    min-width: 270px;
+    text-align: center;
+
+    a {
+      color: gray;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    p {
+      text-align: justify;
+    }
+  }
+
+  .pc-btn-group {
+    min-width: 270px;
+    margin: 2px;
+    padding: 0px 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .pc-btn {
+    width: 120px;
+    color: black;
+    border: 1px solid gray;
+    padding: 10px;
+    border-radius: 3px;
+    text-align: center;
+
+    &:first-of-type {
+      margin-right: 10px;
+    }
+
+    &:hover {
+      color: white;
+      background-color: gray;
+      cursor: pointer;
+    }
+
+    > i {
+      font-size: large;
+      font-style: normal;
+
+      &:before {
+        display: block;
+      }
+    }
+  }
+
+  .pc-dropdown {
+    width: 100%;
+    border: 1px solid gray;
+    margin-top: 20px;
+    border-radius: 3px;
+  }
+
+  .selectize-input {
+    box-shadow: none !important;
+  }
+}
