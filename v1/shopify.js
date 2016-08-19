@@ -139,10 +139,13 @@ jQuery.loadScript = function(url, options) {
         /* Inject the html. */
         injectee.innerHTML = body.innerHTML || body.xml || response;
 
-				$.loadScript('https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.0/remodal.min.js')
-				$.loadScript('https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js')
-        initializeSelectize();
-        initializeRemodal();
+				$.loadScript('https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.0/remodal.min.js').done(function( script, textStatus ) {
+					initializeRemodal();
+				})
+
+				$.loadScript('https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js').done(function( script, textStatus ) {
+					initializeSelectize();
+				});
       } else {
         console.log('inject - no body tag found.');
       }
