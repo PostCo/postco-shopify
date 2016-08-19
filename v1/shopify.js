@@ -3,20 +3,6 @@
 // 1. Injection Code
 // original source: https://raw.githubusercontent.com/Matthew-Dove/Inject/master/src/inject.js
 
-jQuery.loadScript = function(url, options) {
-
-  // Allow user to set any option except for dataType, cache, and url
-  options = $.extend( options || {}, {
-    dataType: "script",
-    cache: true,
-    url: url
-  });
-
-  // Use $.ajax() since it is more flexible than $.getScript
-  // Return the jqXHR object so we can chain callbacks
-  return jQuery.ajax( options );
-};
-
 (function () {
   /* Build the url for each injection element to get the source's html. */
   var createApiUrl = function () {
@@ -140,9 +126,21 @@ jQuery.loadScript = function(url, options) {
         injectee.innerHTML = body.innerHTML || body.xml || response;
 
 				$.getScript('https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js')
-				$.loadScript('https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.0/remodal.min.js').done(function( script, textStatus ) {
-					initializeRemodal();
-				})
+					.done(function( script, textStatus ) {
+						initializeSelectize();
+					})
+				.fail(function(jqxhr, settings, exception) {
+					console.log('Selectize failed to load');
+				});
+
+				$.getScript('https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.0/remodal.min.js')
+					.done(function( script, textStatus ) {
+						initializeRemodal();
+					})
+				.fail(function(jqxhr, settings, exception) {
+					console.log('Remodal failed to load');
+				});
+
       } else {
         console.log('inject - no body tag found.');
       }
