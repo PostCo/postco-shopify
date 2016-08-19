@@ -1,7 +1,21 @@
 'use strict';
 
-// Injection Code
+// 1. Injection Code
 // original source: https://raw.githubusercontent.com/Matthew-Dove/Inject/master/src/inject.js
+
+jQuery.loadScript = function(url, options) {
+
+  // Allow user to set any option except for dataType, cache, and url
+  options = $.extend( options || {}, {
+    dataType: "script",
+    cache: true,
+    url: url
+  });
+
+  // Use $.ajax() since it is more flexible than $.getScript
+  // Return the jqXHR object so we can chain callbacks
+  return jQuery.ajax( options );
+};
 
 (function () {
   /* Build the url for each injection element to get the source's html. */
@@ -152,15 +166,16 @@
   }, 0);
 })();
 
-// Remodal
+// 2. Remodal
 var initializeRemodal = function initializeRemodal() {
+  jQuery.loadScript('https://')
   $('.remodal').remodal();
 };
 
-// Selectize
+// 3. Selectize
 
 var initializeSelectize = function initializeSelectize() {
-  console.log('PC-PLUGIN initialized!');
+  jQuery.loadScript('https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.0/remodal.min.js')
 
   var plugin = document.getElementById("postco-plugin");
   var retailerAuthToken = plugin.dataset.pcApi;
