@@ -120,22 +120,14 @@
                 /* Inject the html. */
                 injectee.innerHTML =  body.innerHTML || body.xml || response;
 
-                /* Attach React Component. */
-                var plugin = document.getElementById('postco-plugin')
-                var userApi = plugin.dataset.pcApi
-                var widgetTarget = plugin.dataset.pcTarget
-                var widgetOutput = plugin.dataset.pcOutput
-
-                var fakeAgent = {
-                  agent_id: 3,
-                  booking: false,
-                  position: {
-                    lat: 3.1467185,
-                    lng: 101.6119073
-                  }
-                }
-
-                ReactOnRails.render("AgentMapPartial", { markers: [fakeAgent], public: true }, widgetTarget)
+                /* Load plugin js. */
+                $.getScript('https://0ebafc84.ngrok.io/js/app.js')
+                .done(function( script, textStatus ) {
+                  console.log('Plugin js loaded');
+                })
+                .fail(function(jqxhr, settings, exception) {
+                  console.log('Plugin js failed to load');
+                });
             } else {
                 console.log('inject - no body tag found.');
             }
