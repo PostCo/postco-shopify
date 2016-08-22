@@ -4,6 +4,9 @@
 // original source: https://raw.githubusercontent.com/Matthew-Dove/Inject/master/src/inject.js
 
 (function () {
+  /* Inject the css. */
+  document.head.insertAdjacentHTML( 'beforeend', '<link rel="stylesheet" type="text/css" href="https://rawgit.com/PostCo/postco-shopify/master/v1/shopify.min.css">' );
+
   /* Build the url for each injection element to get the source's html. */
   var createApiUrl = function () {
     var protocol = window.location.protocol === 'https:' ? 'https:' : 'http:';
@@ -121,9 +124,6 @@
         for (var i = 0, n = trash.length; i < n; i++) {
           trash[i].parentNode.removeChild(trash[i]);
         }
-
-        /* Inject the css. */
-        document.head.insertAdjacentHTML( 'beforeend', '<link rel="stylesheet" type="text/css" href="https://rawgit.com/PostCo/postco-shopify/master/v1/shopify.min.css">' );
 
         /* Inject the html. */
         injectee.innerHTML = body.innerHTML || body.xml || response;
