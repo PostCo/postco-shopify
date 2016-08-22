@@ -154,6 +154,7 @@
 
   /* The attribue to look for when finding elements that require injection. */
   var injectSrcAttr = 'data-pc-src';
+  console.log(injectSrcAttr);
   var template = '/plugins/v1/shopify'
 
   /* Get the source's html, and inject it into the element that requested it. */
