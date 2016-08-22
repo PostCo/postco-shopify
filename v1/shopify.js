@@ -122,11 +122,11 @@
           trash[i].parentNode.removeChild(trash[i]);
         }
 
-        /* Inject the html. */
-        injectee.innerHTML = body.innerHTML || body.xml || response;
-
         /* Inject the css. */
         document.head.insertAdjacentHTML( 'beforeend', '<link rel="stylesheet" type="text/css" href="https://rawgit.com/PostCo/postco-shopify/master/v1/shopify.min.css">' );
+
+        /* Inject the html. */
+        injectee.innerHTML = body.innerHTML || body.xml || response;
 
         /* Load selectize. */
 				$.getScript('https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js')
