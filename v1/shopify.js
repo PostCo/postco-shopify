@@ -154,12 +154,11 @@
 
   /* The attribue to look for when finding elements that require injection. */
   var injectSrcAttr = 'data-pc-src';
-  console.log(injectSrcAttr);
-  var template = '/plugins/v1/shopify'
+  var templateUrl = '/plugins/v1/shopify'
 
   /* Get the source's html, and inject it into the element that requested it. */
   var injectHtml = function injectHtml(injectee) {
-    var queryUrl = injectee.getAttribute(injectSrcAttr + template);
+    var queryUrl = injectee.getAttribute(injectSrcAttr) + templateUrl;
     getHtml(createApiUrl(queryUrl), function (response) {
       injectResponse(response, injectee);
     });
