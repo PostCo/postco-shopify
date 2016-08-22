@@ -154,10 +154,11 @@
 
   /* The attribue to look for when finding elements that require injection. */
   var injectSrcAttr = 'data-pc-src';
+  var template = '/plugins/v1/shopify'
 
   /* Get the source's html, and inject it into the element that requested it. */
   var injectHtml = function injectHtml(injectee) {
-    var queryUrl = injectee.getAttribute(injectSrcAttr);
+    var queryUrl = injectee.getAttribute(injectSrcAttr + template);
     getHtml(createApiUrl(queryUrl), function (response) {
       injectResponse(response, injectee);
     });
@@ -181,10 +182,9 @@ var initializeRemodal = function initializeRemodal() {
 
 var initializeSelectize = function initializeSelectize() {
   var plugin = document.getElementById("postco-plugin");
-  var retailerAuthToken = plugin.dataset.pcApi;
 
-  var env = plugin.dataset.pcEnv;
-  var url = env === "dev" ? "https://postco.xyz" : "https://postco.com.my";
+  var retailerAuthToken = plugin.dataset.pcApi;
+  var url = plugin.dataset.pcSrc;
 
   $("#js-postco-shipping").click(function () {
     $("#js-postco-widget").hide()
