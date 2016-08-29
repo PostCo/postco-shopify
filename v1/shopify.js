@@ -138,6 +138,8 @@
   				.fail(function(jqxhr, settings, exception) {
   					console.log('jQuery failed to load');
   				});
+        } else {
+					console.log('jQuery is already loaded');
         }
 
         /* Load selectize. */
