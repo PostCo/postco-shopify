@@ -231,7 +231,7 @@ var initializeSelectize = function initializeSelectize() {
         }
       });
 
-      $('form.cart').attr("action", 'cart?' + address_params);
+      $('form[action="/cart"]').attr("action", 'cart?' + address_params);
     },
     load: function load(query, callback) {
       this.settings.load = null;
