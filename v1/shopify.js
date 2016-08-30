@@ -16,7 +16,7 @@
 
   /* Redefine Jquery if loaded using dojo. */
   if (typeof dojo === 'object') {
-    window.$ = require('jquery')
+    $ = require('jquery')
   }
 
   /* Build the url for each injection element to get the source's html. */
@@ -140,8 +140,11 @@
         /* Inject the html. */
         injectee.innerHTML = body.innerHTML || body.xml || response;
 
+        if (typeof dojo === 'object') {
+          $ = require('jquery')
+        }
         /* Load selectize. */
-				window.$.getScript('https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js')
+				$.getScript('https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js')
 					.done(function( script, textStatus ) {
 						initializeSelectize();
 					})
@@ -150,7 +153,7 @@
 				});
 
         /* Load remodal. */
-				window.$.getScript('https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.0/remodal.min.js')
+				$.getScript('https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.0/remodal.min.js')
 					.done(function( script, textStatus ) {
             $('.remodal').remodal();
 					})
