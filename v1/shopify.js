@@ -5,7 +5,7 @@
 
 (function () {
   /* Inject the css. */
-  document.head.insertAdjacentHTML( 'beforeend', '<link rel="stylesheet" type="text/css" href="https://rawgit.com/PostCo/postco-shopify/master/v1/shopify.min.css">' );
+  document.head.insertAdjacentHTML( 'beforeend', '<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/PostCo/postco-shopify/v1.7.9/v1/shopify.min.css">' );
 
   /* Load jquery if not present */
   if (window.jQuery === undefined) {
