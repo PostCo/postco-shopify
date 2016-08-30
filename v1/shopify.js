@@ -7,18 +7,16 @@
   /* Inject the css. */
   document.head.insertAdjacentHTML( 'beforeend', '<link rel="stylesheet" type="text/css" href="https://rawgit.com/PostCo/postco-shopify/master/v1/shopify.min.css">' );
 
-  /* Load jquery. */
+  /* Load jquery if not present */
   if (window.jQuery === undefined) {
     var script = document.createElement('script')
     script.src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"
     document.head.appendChild(script)
-  } else {
-    jQuery.noConflict(true)
+  }
 
-    var script = document.createElement('script')
-    script.src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"
-    script.setAttribute('defer', 'defer')
-    document.head.appendChild(script)
+  /* Redefine Jquery if loaded using dojo. */
+  if (typeof dojo === 'object') {
+    $ = require('jquery')
   }
 
   /* Build the url for each injection element to get the source's html. */
