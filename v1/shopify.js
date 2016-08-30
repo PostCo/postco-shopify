@@ -16,7 +16,7 @@
 
   /* Redefine Jquery if loaded using dojo. */
   if (typeof dojo === 'object') {
-    $ = require('jquery')
+    var $ = require('jquery')
   }
 
   /* Build the url for each injection element to get the source's html. */
