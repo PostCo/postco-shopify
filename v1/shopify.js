@@ -12,6 +12,12 @@
     var script = document.createElement('script')
     script.src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"
     document.head.appendChild(script)
+  } else {
+    jQuery.noConflict(true)
+
+    var script = document.createElement('script')
+    script.src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"
+    document.head.appendChild(script)
   }
 
   /* Build the url for each injection element to get the source's html. */
