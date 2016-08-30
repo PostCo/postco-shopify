@@ -140,9 +140,6 @@
         /* Inject the html. */
         injectee.innerHTML = body.innerHTML || body.xml || response;
 
-        if (typeof dojo === 'object') {
-          $ = require('jquery')
-        }
         /* Load selectize. */
 				$.getScript('https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js')
 					.done(function( script, textStatus ) {
