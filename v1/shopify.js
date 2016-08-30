@@ -152,7 +152,7 @@
         /* Load remodal. */
 				$.getScript('https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.0/remodal.min.js')
 					.done(function( script, textStatus ) {
-						initializeRemodal();
+            $('.remodal').remodal();
 					})
 				.fail(function(jqxhr, settings, exception) {
 					console.log('Remodal failed to load');
@@ -185,12 +185,7 @@
   }, 0);
 })();
 
-// 2. Remodal
-var initializeRemodal = function initializeRemodal() {
-  $('.remodal').remodal();
-};
-
-// 3. Selectize
+// 2. Selectize
 
 var initializeSelectize = function initializeSelectize() {
   var plugin = document.getElementById("postco-plugin");
