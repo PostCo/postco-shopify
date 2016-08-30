@@ -8,16 +8,10 @@
   document.head.insertAdjacentHTML( 'beforeend', '<link rel="stylesheet" type="text/css" href="https://rawgit.com/PostCo/postco-shopify/master/v1/shopify.min.css">' );
 
   /* Load jquery. */
-  if (typeof jQuery === 'undefined') {
-		$.getScript('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js')
-			.done(function( script, textStatus ) {
-				console.log('jQuery loaded');
-			})
-		.fail(function(jqxhr, settings, exception) {
-			console.log('jQuery failed to load');
-		});
-  } else {
-		console.log('jQuery is already loaded');
+  if (window.jQuery === undefined) {
+    var script = document.createElement('script')
+    script.src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"
+    document.head.appendChild(script)
   }
 
   /* Build the url for each injection element to get the source's html. */
