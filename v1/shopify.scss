@@ -849,6 +849,7 @@ html.remodal-is-locked {
 
     label {
       padding: 10px;
+      margin-bottom: 0px !important;
     }
 
     label > i {
@@ -866,7 +867,7 @@ html.remodal-is-locked {
   }
 
   .pc-dropdown {
-    width: 100%;
+    min-width: 355px;
     border: 1px solid gray;
     margin-top: 20px;
     border-radius: 3px;
