@@ -835,8 +835,9 @@ html.remodal-is-locked {
 
     input[type="radio"] {
       visibility: hidden;
+      display: none;
 
-      &:checked + label {
+      &:checked + .pc-btn {
         color: white;
         background-color: gray;
         cursor: pointer;
