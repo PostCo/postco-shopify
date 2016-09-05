@@ -819,17 +819,16 @@ html.remodal-is-locked {
   }
 
   .pc-btn-group {
-    min-width: 270px;
+    min-width: 355px;
     margin: 2px;
     display: flex;
     justify-content: space-between;
   }
 
   .pc-btn {
-    width: 120px;
+    width: 170px;
     color: black;
     border: 1px solid gray;
-    padding: 10px;
     border-radius: 3px;
     text-align: center;
 
@@ -837,7 +836,7 @@ html.remodal-is-locked {
       visibility: hidden;
       display: none;
 
-      &:checked + .pc-btn {
+      &:checked + label {
         color: white;
         background-color: gray;
         cursor: pointer;
@@ -848,6 +847,10 @@ html.remodal-is-locked {
       margin-right: 10px;
     }
 
+    label {
+      padding: 10px;
+    }
+
     label > i {
       font-size: large;
       font-style: normal;
@@ -856,6 +859,10 @@ html.remodal-is-locked {
         display: block;
       }
     }
+  }
+
+  #js-postco-checkout {
+    padding-left: 10px;
   }
 
   .pc-dropdown {
