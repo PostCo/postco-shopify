@@ -187,6 +187,7 @@ var initializeSelectize = function initializeSelectize() {
   $("#js-postco-shipping").click(function () {
     $("#js-postco-widget").hide()
     $("#js-postco-fields").attr('disabled', true);
+    $('form.js-cart').attr("action", '/cart');
   });
 
   $("#js-postco-collect").click(function () {
@@ -222,7 +223,7 @@ var initializeSelectize = function initializeSelectize() {
         }
       });
 
-      $('form[action="/cart"]').attr("action", 'cart?' + address_params);
+      $('form.js-cart').attr("action", 'cart?' + address_params);
     },
     load: function load(query, callback) {
       this.settings.load = null;
