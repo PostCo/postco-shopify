@@ -826,10 +826,7 @@ html.remodal-is-locked {
   }
 
   .pc-btn {
-    width: 170px;
     color: black;
-    border: 1px solid gray;
-    border-radius: 3px;
     text-align: center;
 
     input[type="radio"] {
@@ -848,7 +845,9 @@ html.remodal-is-locked {
     }
 
     label {
+      border: 1px solid gray;
       padding: 10px;
+      border-radius: 3px;
       margin-bottom: 0px !important;
     }
 
