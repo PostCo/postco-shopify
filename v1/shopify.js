@@ -149,6 +149,8 @@
 					console.log('Selectize failed to load');
 				});
 
+        $('#js-postco-shipping').click()
+
       } else {
         console.log('inject - no body tag found.');
       }
@@ -186,11 +188,13 @@ var initializeSelectize = function initializeSelectize() {
 
   $("#js-postco-shipping").click(function () {
     $("#js-postco-widget").hide()
+    $("#js-postco-checkout").show()
     $("#js-postco-fields").attr('disabled', true);
     $('form.js-cart').attr("action", '/cart');
   });
 
   $("#js-postco-collect").click(function () {
+    $("#js-postco-checkout").hide()
     $("#js-postco-widget").show()
     $("#js-postco-fields").attr('disabled', false);
   });
