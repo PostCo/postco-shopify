@@ -833,14 +833,18 @@ html.remodal-is-locked {
     border-radius: 3px;
     text-align: center;
 
-    &:first-of-type {
-      margin-right: 10px;
+    input[type="radio"] {
+      visibility: hidden;
+
+      &:checked + label {
+        color: white;
+        background-color: gray;
+        cursor: pointer;
+      }
     }
 
-    &:hover {
-      color: white;
-      background-color: gray;
-      cursor: pointer;
+    &:first-of-type {
+      margin-right: 10px;
     }
 
     > i {
