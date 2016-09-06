@@ -819,7 +819,7 @@ html.remodal-is-locked {
   }
 
   .pc-btn-group {
-    min-width: 355px;
+    min-width: 280px;
     margin: 2px;
     display: flex;
     justify-content: space-between;
@@ -856,6 +856,7 @@ html.remodal-is-locked {
       font-style: normal;
 
       &:before {
+        padding-bottom: 5px;
         display: block;
       }
     }
@@ -866,7 +867,7 @@ html.remodal-is-locked {
   }
 
   .pc-dropdown {
-    min-width: 355px;
+    min-width: 280px;
     border: 1px solid gray;
     margin-top: 20px;
     border-radius: 3px;
