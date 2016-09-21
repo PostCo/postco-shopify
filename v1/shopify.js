@@ -5,7 +5,7 @@
 
 (function () {
   /* Inject the css. */
-  document.head.insertAdjacentHTML( 'beforeend', '<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/PostCo/postco-shopify/v1.7.17/v1/shopify.min.css">' );
+  document.head.insertAdjacentHTML( 'beforeend', '<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/PostCo/postco-shopify/v1.7.18/v1/shopify.min.css">' );
 
   /* Load jquery if not present */
   if (window.jQuery === undefined) {
@@ -248,8 +248,8 @@ var initializeSelectize = function initializeSelectize() {
             return {
               id: x.attributes['agent-id'],
               name: x.attributes.company,
-              address1: x.attributes.address1,
-              address2: x.attributes.address2,
+              address1: x.attributes.address1 + ', ' + x.attributes.address2,
+              address2: x.attributes.address3,
               city: x.attributes.city,
               zip: x.attributes.zip,
               province: x.attributes.state,
