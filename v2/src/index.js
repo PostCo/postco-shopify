@@ -1,7 +1,9 @@
 import xcomponent from 'xcomponent/dist/xcomponent'
-import $ from 'jquery'
+import $ from 'jquery/dist/jquery'
 
-(() => {
+document.addEventListener("DOMContentLoaded", function() {
+  console.log("PostCo Shopify Integration Script v.2.0 was loaded successfully")
+
   const childResizeCallback = function(height) {
     document.getElementById('postco-widget-container').childNodes[1].style.height = `${height}px`
   }
@@ -70,7 +72,7 @@ import $ from 'jquery'
       popup: false
     },
     defaultContext: 'iframe'
-  });
+  })
 
   window.PostCo.render({
     apiToken: apiToken,
@@ -78,4 +80,6 @@ import $ from 'jquery'
     onAgentSelection: agentSelectionCallback,
     onAgentRemoval: agentRemovalCallback
   }, '#postco-widget-container')
+
+  console.log("PostCo Shopify Integration Script v.2.0 was executed successfully")
 })

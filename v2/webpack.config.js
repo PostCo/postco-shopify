@@ -1,13 +1,17 @@
 var webpack = require('webpack');
+var WebpackDevServer = require('webpack-dev-server');
 var path = require('path');
 
+var host = '0.0.0.0';
+var port = '9000';
+
 var config = {
-  entry: './src/shopify',
+  entry: './src',
   devtool: 'source-map',
   output: {
-    path: './build',
-    filename: 'shopify.js',
-    publicPath: '/'
+    path: __dirname + '/build',
+    filename: 'index.js',
+    publicPath: __dirname + '/'
   },
   module: {
     loaders: [
@@ -27,5 +31,18 @@ var config = {
     extensions: ['.js']
   }
 }
+
+new WebpackDevServer(webpack(config), {
+  contentBase: './',
+  hot: true,
+  debug: true
+}).listen(port, host, function (err, result) {
+  if (err) {
+    console.log(err);
+  }
+});
+console.log('-------------------------');
+console.log('Local web server runs at http://' + host + ':' + port);
+console.log('-------------------------');
 
 module.exports = config;

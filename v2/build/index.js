@@ -4,13 +4,15 @@ var _xcomponent = require('xcomponent/dist/xcomponent');
 
 var _xcomponent2 = _interopRequireDefault(_xcomponent);
 
-var _jquery = require('jquery');
+var _jquery = require('jquery/dist/jquery');
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(function () {
+document.addEventListener("DOMContentLoaded", function () {
+  console.log("PostCo Shopify Integration Script v.2.0 was loaded successfully");
+
   var childResizeCallback = function childResizeCallback(height) {
     document.getElementById('postco-widget-container').childNodes[1].style.height = height + 'px';
   };
@@ -87,5 +89,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     onAgentSelection: agentSelectionCallback,
     onAgentRemoval: agentRemovalCallback
   }, '#postco-widget-container');
+
+  console.log("PostCo Shopify Integration Script v.2.0 was executed successfully");
 });
-//# sourceMappingURL=shopify.js.map
+//# sourceMappingURL=index.js.map

@@ -5,7 +5,7 @@
   "main": "webpack.config.js",
   "scripts": {
     "dev": "webpack --watch-stdin --progress --color",
-    "compile": "babel ./src --out-dir ./build --source-maps --presets es2015 --plugins babel-plugin-add-module-exports --transform && uglifyjs ./build/shopify.js --compress --mangle --output ./build/shopify.min.js --source-map ./build/shopify.min.js.map"
+    "compile": "babel ./src --out-dir ./build --source-maps --presets es2015 --plugins babel-plugin-add-module-exports --transform && uglifyjs ./build/index.js --compress --mangle --output ./build/index.min.js --source-map ./build/index.min.js.map"
   },
   "repository": {
     "type": "git",
@@ -36,7 +36,7 @@
     "webpack-dev-server": "1.11.0"
   },
   "dependencies": {
-    "xcomponent": "^1.0.48",
-    "jquery": "^3.1.1"
+    "jquery": "^3.1.1",
+    "xcomponent": "^1.0.48"
   }
 }
