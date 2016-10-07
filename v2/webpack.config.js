@@ -29,7 +29,22 @@ var config = {
   resolve: {
     root: path.resolve('./src'),
     extensions: ['.js']
-  }
+  },
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin({
+      beautify: false,
+      comments: false,
+      compress: {
+        warnings: false,
+        drop_console: true
+      },
+      mangle: {
+        except: ['$'],
+        screw_ie8 : true,
+        keep_fnames: true
+      }
+    })
+  ]
 }
 
 new WebpackDevServer(webpack(config), {
@@ -41,6 +56,7 @@ new WebpackDevServer(webpack(config), {
     console.log(err);
   }
 });
+
 console.log('-------------------------');
 console.log('Local web server runs at http://' + host + ':' + port);
 console.log('-------------------------');
