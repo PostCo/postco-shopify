@@ -2,8 +2,8 @@ var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var path = require('path');
 
-var host = '0.0.0.0';
-var port = '9000';
+var host = '127.0.0.1';
+var port = '5000';
 
 var config = {
   entry: './src',
