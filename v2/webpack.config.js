@@ -10,7 +10,7 @@ var config = {
   devtool: 'source-map',
   output: {
     path: __dirname + '/build',
-    filename: 'index.js',
+    filename: 'index.min.js',
     publicPath: __dirname + '/'
   },
   module: {
@@ -20,8 +20,7 @@ var config = {
         loader: 'babel',
         exclude: /node_modules/,
         query: {
-          plugins: ["transform-decorators-legacy"],
-          presets: ["es2015", "stage-2", "stage-0"],
+          presets: ["es2015"],
         }
       }
     ]
