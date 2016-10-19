@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   window.PostCo = xcomponent.create({
     tag: 'postco-widget',
-    url: 'https://postco-plugin-staging.herokuapp.com/delivery',
+    url: 'https://plugin.postco.com.my/delivery',
     //url: 'https://postco-plugin.dev/delivery',
     singleton: true,
     props: {
