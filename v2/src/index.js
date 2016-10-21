@@ -1,7 +1,7 @@
 import xcomponent from 'xcomponent/dist/xcomponent'
 import $ from 'jquery/dist/jquery'
 
-document.addEventListener("DOMContentLoaded", function() {
+(global => {
   console.log("PostCo Shopify Integration Script v.2.0 was loaded successfully")
 
   const childResizeCallback = function(height) {
@@ -83,4 +83,4 @@ document.addEventListener("DOMContentLoaded", function() {
   }, '#postco-widget-container')
 
   console.log("PostCo Shopify Integration Script v.2.0 was executed successfully")
-})
+})(window)
