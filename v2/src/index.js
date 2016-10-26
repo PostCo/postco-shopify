@@ -36,51 +36,56 @@ import $ from 'jquery/dist/jquery'
   $("form.js-postco-cart").prepend(`<input id="js-postco-agent-id" name="attributes[postco-agent-id]" type="hidden" value="">`)
 
   const containerElement = document.getElementById("postco-widget-container")
-  const containerElementWidth = containerElement.offsetWidth
 
-  const apiToken = containerElement.getAttribute("data-postco-api")
+  if (containerElement === null) {
+    return
+  } else {
+    const containerElementWidth = containerElement.offsetWidth
 
-  window.PostCo = xcomponent.create({
-    tag: 'postco-widget',
-    url: 'https://plugin.postco.com.my/delivery',
-    //url: 'https://postco-plugin.dev/delivery',
-    singleton: true,
-    props: {
-      apiToken: {
-        type: 'string',
-        required: true
+    const apiToken = containerElement.getAttribute("data-postco-api")
+
+    window.PostCo = xcomponent.create({
+      tag: 'postco-widget',
+      url: 'https://plugin.postco.com.my/delivery',
+      //url: 'https://postco-plugin.dev/delivery',
+      singleton: true,
+      props: {
+        apiToken: {
+          type: 'string',
+          required: true
+        },
+         onChildResize: {
+          type: 'function',
+          required: true
+        },
+        onAgentSelection: {
+          type: 'function',
+          required: true
+        },
+        onAgentRemoval: {
+          type: 'function',
+          required: true
+        }
       },
-       onChildResize: {
-        type: 'function',
-        required: true
+      dimensions: {
+        width: containerElementWidth,
+        height: 130
       },
-      onAgentSelection: {
-        type: 'function',
-        required: true
+      contexts: {
+        iframe: true,
+        lightbox: false,
+        popup: false
       },
-      onAgentRemoval: {
-        type: 'function',
-        required: true
-      }
-    },
-    dimensions: {
-      width: containerElementWidth,
-      height: 130
-    },
-    contexts: {
-      iframe: true,
-      lightbox: false,
-      popup: false
-    },
-    defaultContext: 'iframe'
-  })
+      defaultContext: 'iframe'
+    })
 
-  window.PostCo.render({
-    apiToken: apiToken,
-    onChildResize: childResizeCallback,
-    onAgentSelection: agentSelectionCallback,
-    onAgentRemoval: agentRemovalCallback
-  }, '#postco-widget-container')
+    window.PostCo.render({
+      apiToken: apiToken,
+      onChildResize: childResizeCallback,
+      onAgentSelection: agentSelectionCallback,
+      onAgentRemoval: agentRemovalCallback
+    }, '#postco-widget-container')
 
-  console.log("PostCo Shopify Integration Script v.2.0 was executed successfully")
+    console.log("PostCo Shopify Integration Script v.2.0 was executed successfully")
+  }
 })(window)
