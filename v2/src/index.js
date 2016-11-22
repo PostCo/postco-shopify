@@ -5,7 +5,10 @@ import $ from 'jquery/dist/jquery'
   console.log("PostCo Shopify Integration Script v.2.0 was loaded successfully")
 
   const childResizeCallback = function(height) {
-    document.getElementById('postco-widget-container').childNodes[1].style.height = `${height}px`
+    let element = document.getElementById('postco-widget-container')
+    let index = element.children.length - 1
+
+    element.children[index].style.height = `${height}px`
   }
 
   const agentSelectionCallback = function(agent) {
@@ -47,7 +50,7 @@ import $ from 'jquery/dist/jquery'
     window.PostCo = xcomponent.create({
       tag: 'postco-widget',
       url: 'https://plugin.postco.com.my/delivery',
-      //url: 'https://postco-plugin.dev/delivery',
+      // url: 'https://postco-plugin.dev/delivery',
       // url: 'https://postco-plugin-production.herokuapp.com/delivery',
       singleton: true,
       props: {
