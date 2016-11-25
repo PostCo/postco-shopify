@@ -49,8 +49,8 @@ import $ from 'jquery/dist/jquery'
 
     window.PostCo = xcomponent.create({
       tag: 'postco-widget',
-      // url: 'https://plugin.postco.com.my/delivery',
-      url: 'http://127.0.0.1:4000/delivery',
+      url: 'https://plugin.postco.com.my/delivery',
+      // url: 'http://127.0.0.1:4000/delivery',
       // url: 'https://postco-plugin.dev/delivery',
       // url: 'https://postco-plugin-production.herokuapp.com/delivery',
       singleton: true,
