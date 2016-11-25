@@ -572,9 +572,9 @@ bcrypt-pbkdf@^1.0.0:
   dependencies:
     tweetnacl "^0.14.3"
 
-beaver-logger@^2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/beaver-logger/-/beaver-logger-2.0.2.tgz#6b2143426c0bf3fcefd856cb783eadd076f09c65"
+beaver-logger@^1.0.7:
+  version "1.0.17"
+  resolved "https://registry.yarnpkg.com/beaver-logger/-/beaver-logger-1.0.17.tgz#bb49a5f16f51ae0ef9539650e58dfc3ea0d28d1a"
   dependencies:
     es6-promise "^3.1.2"
     es6-promise-min "^2.0.1"
@@ -1552,17 +1552,13 @@ minimatch@^3.0.0, minimatch@^3.0.2:
   dependencies:
     brace-expansion "^1.0.0"
 
-minimist@0.0.8:
+minimist@0.0.8, minimist@~0.0.1:
   version "0.0.8"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-0.0.8.tgz#857fcabfc3397d2625b8228262e86aa7a011b05d"
 
 minimist@^1.1.0, minimist@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.0.tgz#a35008b20f41383eec1fb914f4cd5df79a264284"
-
-minimist@~0.0.1:
-  version "0.0.10"
-  resolved "https://registry.yarnpkg.com/minimist/-/minimist-0.0.10.tgz#de3f98543dbf96082be48ad1a0c7cda836301dcf"
 
 "mkdirp@>=0.5 0", mkdirp@^0.5.1, mkdirp@~0.5.0, mkdirp@~0.5.1:
   version "0.5.1"
@@ -1758,9 +1754,9 @@ pinkie@^2.0.0:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/pinkie/-/pinkie-2.0.4.tgz#72556b80cfa0d48a974e80e77248e80ed4f7f870"
 
-post-robot@^4.0.0:
-  version "4.0.28"
-  resolved "https://registry.yarnpkg.com/post-robot/-/post-robot-4.0.28.tgz#836c38a5b907659ffd59004df12dd81a8b757e3e"
+post-robot@^2.0.6:
+  version "2.0.41"
+  resolved "https://registry.yarnpkg.com/post-robot/-/post-robot-2.0.41.tgz#7cdaaee934bd46e2d724344cd246e2e87c95b473"
   dependencies:
     babel-eslint "^6.0.4"
     es6-promise "^3.1.2"
@@ -2405,16 +2401,16 @@ wrappy@1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
 
-xcomponent@1.0.100:
-  version "1.0.100"
-  resolved "https://registry.yarnpkg.com/xcomponent/-/xcomponent-1.0.100.tgz#820a4af29d54a1753c43210d063f7e847fc858b1"
+xcomponent@1.0.63:
+  version "1.0.63"
+  resolved "https://registry.yarnpkg.com/xcomponent/-/xcomponent-1.0.63.tgz#cc7b1cbbcde30135f73ff7dd22aa7b7c7e1e7dca"
   dependencies:
     babel-eslint "^6.0.4"
-    beaver-logger "^2"
+    beaver-logger "^1.0.7"
     es6-promise "^3.1.2"
     es6-promise-min "^2.0.1"
     hi-base32 "^0.1.1"
-    post-robot "^4.0.0"
+    post-robot "^2.0.6"
     sync-browser-mocks "^1.0.4"
 
 xtend@^4.0.0:
