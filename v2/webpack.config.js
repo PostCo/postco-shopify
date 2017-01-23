@@ -1,63 +1,67 @@
-var webpack = require('webpack');
-var WebpackDevServer = require('webpack-dev-server');
-var path = require('path');
+const path = require('path')
+const webpack = require("webpack")
+const WebpackDevServer = require('webpack-dev-server')
+const ExtractTextPlugin = require("extract-text-webpack-plugin")
 
-var host = '127.0.0.1';
-var port = '5000';
-
-var config = {
-  entry: './src',
-  devtool: 'source-map',
-  output: {
-    path: __dirname + '/build',
-    filename: 'index.min.js',
-    publicPath: __dirname + '/'
+const config = {
+  context: path.resolve(__dirname, './src'),
+  entry: {
+    index: ['./index.js', './index.scss'],
   },
-  module: {
-    loaders: [
-      {
-        test: /\.js$/,
-        loader: 'babel',
-        exclude: /node_modules/,
-        query: {
-          presets: ["es2015"],
-        }
-      }
-    ]
+	devtool: 'source-map',
+	output: {
+    path: path.resolve(__dirname, './dist'),
+		filename: '[name].min.js',
+		publicPath: __dirname + '/'
+	},
+  devServer: {
+    contentBase: path.join(__dirname, "/"),
+    hot: true,
+    debug: true,
+    compress: true,
+    port: 5000
   },
-  resolve: {
-    root: path.resolve('./src'),
-    extensions: ['.js']
-  },
-  plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      beautify: false,
-      comments: false,
-      compress: {
-        warnings: false,
-        drop_console: true
-      },
-      mangle: {
-        except: ['$'],
-        screw_ie8 : true,
-        keep_fnames: true
-      }
-    })
-  ]
+	module: {
+		rules: [
+			{
+				test: /\.css$/,
+				loader: ExtractTextPlugin.extract({
+					loader: 'css-loader?importLoaders=1',
+				}),
+			},
+			{
+				test: /\.(sass|scss)$/,
+				loader: ExtractTextPlugin.extract(['css-loader', 'sass-loader'])
+			},
+			{
+				test: /\.js$/,
+				loader: 'babel-loader',
+				exclude: /node_modules/,
+				query: {
+					presets: ["es2015"],
+				}
+			}
+		]
+	},
+	plugins: [
+		new webpack.optimize.UglifyJsPlugin({
+			beautify: false,
+			comments: false,
+			compress: {
+				warnings: false,
+				drop_console: true
+			},
+			mangle: {
+				except: ['$'],
+				screw_ie8 : true,
+				keep_fnames: true
+			}
+		}),
+		new ExtractTextPlugin({
+			filename: '[name].css',
+			allChunks: true,
+		})
+	]
 }
 
-new WebpackDevServer(webpack(config), {
-  contentBase: './',
-  hot: true,
-  debug: true
-}).listen(port, host, function (err, result) {
-  if (err) {
-    console.log(err);
-  }
-});
-
-console.log('-------------------------');
-console.log('Local web server runs at http://' + host + ':' + port);
-console.log('-------------------------');
-
-module.exports = config;
+module.exports = config
