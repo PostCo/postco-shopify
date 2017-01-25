@@ -1,15 +1,16 @@
 const path = require('path')
 const webpack = require("webpack")
 const WebpackDevServer = require('webpack-dev-server')
+const ExtractTextPlugin = require("extract-text-webpack-plugin")
 
 const config = {
   context: path.resolve(__dirname, './src'),
   entry: {
-    index: ['./index.js'],
+    index: ['./index.js', './index.scss'],
   },
 	devtool: 'source-map',
 	output: {
-    path: path.resolve(__dirname, './build'),
+    path: path.resolve(__dirname, './dist'),
 		filename: '[name].min.js',
 		publicPath: __dirname + '/'
 	},
@@ -22,6 +23,16 @@ const config = {
   },
 	module: {
 		rules: [
+			{
+				test: /\.css$/,
+				loader: ExtractTextPlugin.extract({
+					loader: 'css-loader?importLoaders=1',
+				}),
+			},
+			{
+				test: /\.(sass|scss)$/,
+				loader: ExtractTextPlugin.extract(['css-loader', 'sass-loader'])
+			},
 			{
 				test: /\.js$/,
 				loader: 'babel-loader',
@@ -38,13 +49,17 @@ const config = {
 			comments: false,
 			compress: {
 				warnings: false,
-				drop_console: true
+				drop_console: false
 			},
 			mangle: {
 				except: ['$'],
 				screw_ie8 : true,
 				keep_fnames: true
 			}
+		}),
+		new ExtractTextPlugin({
+			filename: '[name].css',
+			allChunks: true,
 		})
 	]
 }
