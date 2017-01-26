@@ -4,8 +4,7 @@
   "description": "Integration script for shopify plugin",
   "main": "webpack.config.js",
   "scripts": {
-    "compile": "node_modules/.bin/webpack --progress --color",
-    "server": "node_modules/.bin/webpack-dev-server"
+    "server": "node_modules/.bin/webpack --progress --color && node_modules/.bin/webpack-dev-server"
   },
   "repository": {
     "type": "git",
@@ -37,6 +36,6 @@
     "jquery": "^3.1.1",
     "node-sass": "^4.3.0",
     "sass-loader": "^4.1.1",
-    "xcomponent": "^1.0.111"
+    "xcomponent": "^1.0.112"
   }
 }

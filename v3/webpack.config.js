@@ -6,7 +6,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin")
 const config = {
   context: path.resolve(__dirname, './src'),
   entry: {
-    index: ['./index.js', './index.scss'],
+    index: ['./js/index.js', './css/index.scss'],
   },
 	devtool: 'source-map',
 	output: {
@@ -46,14 +46,18 @@ const config = {
 		]
 	},
 	plugins: [
-    new webpack.optimize.UglifyJsPlugin({
+		new webpack.optimize.UglifyJsPlugin({
       minimize: true,
-      debug: false,
-      compress: {
+			beautify: false,
+			comments: false,
+			compress: {
 				warnings: false,
+				drop_console: true
 			},
 			mangle: {
-        except: ['$']
+				except: ['$'],
+				screw_ie8 : true,
+				keep_fnames: true
 			}
 		}),
 		new ExtractTextPlugin({

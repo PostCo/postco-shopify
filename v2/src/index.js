@@ -4,13 +4,6 @@ import $ from 'jquery/dist/jquery'
 (global => {
   console.log("PostCo Shopify Integration Script v.2.0 was loaded successfully")
 
-  const childResizeCallback = function(height) {
-    let element = document.getElementById('postco-widget-container')
-    let index = element.children.length - 1
-
-    element.children[index].style.height = `${height}px`
-  }
-
   const agentSelectionCallback = function(agent) {
     const address_params = $.param({
       step: 'contact_information',
@@ -31,7 +24,7 @@ import $ from 'jquery/dist/jquery'
     $('#js-postco-agent-id').val(agent.id)
   }
 
-  const agentRemovalCallback = function() {
+  const agentCancellationCallback = function() {
     $('form.js-postco-cart').attr("action", '/cart');
     $('#js-postco-agent-id').val('')
   }
@@ -49,32 +42,28 @@ import $ from 'jquery/dist/jquery'
 
     window.PostCo = xcomponent.create({
       tag: 'postco-widget',
-      url: 'https://plugin.postco.com.my/delivery',
-      // url: 'http://127.0.0.1:4000/delivery',
-      // url: 'https://postco-plugin.dev/delivery',
-      // url: 'https://postco-plugin-production.herokuapp.com/delivery',
+      // url: 'https://plugin.postco.com.my/v2',
+      url: 'http://127.0.0.1:4000/v2',
+      // url: 'https://postco-plugin.dev/v2',
+      // url: 'https://postco-plugin-production.herokuapp.com/v2',
       singleton: true,
       props: {
         apiToken: {
           type: 'string',
           required: true
         },
-         onChildResize: {
-          type: 'function',
-          required: true
-        },
         onAgentSelection: {
           type: 'function',
           required: true
         },
-        onAgentRemoval: {
+        onAgentCancellation: {
           type: 'function',
           required: true
         }
       },
       dimensions: {
         width: containerElementWidth,
-        height: 160
+        height: 700
       },
       contexts: {
         iframe: true,
@@ -86,9 +75,8 @@ import $ from 'jquery/dist/jquery'
 
     window.PostCo.render({
       apiToken: apiToken,
-      onChildResize: childResizeCallback,
       onAgentSelection: agentSelectionCallback,
-      onAgentRemoval: agentRemovalCallback
+      onAgentCancellation: agentCancellationCallback
     }, '#postco-widget-container')
 
     console.log("PostCo Shopify Integration Script v.2.0 was executed successfully")

@@ -4,7 +4,6 @@
   "description": "Integration script for shopify plugin",
   "main": "webpack.config.js",
   "scripts": {
-    "compile": "node_modules/.bin/webpack",
     "server": "node_modules/.bin/webpack && node_modules/.bin/webpack-dev-server"
   },
   "repository": {
