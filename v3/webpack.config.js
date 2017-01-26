@@ -38,23 +38,22 @@ const config = {
 				loader: 'babel-loader',
 				exclude: /node_modules/,
 				query: {
-					presets: ["es2015"],
+          presets: [
+            ['es2015']
+          ]
 				}
 			}
 		]
 	},
 	plugins: [
-		new webpack.optimize.UglifyJsPlugin({
-			beautify: false,
-			comments: false,
-			compress: {
+    new webpack.optimize.UglifyJsPlugin({
+      minimize: true,
+      debug: false,
+      compress: {
 				warnings: false,
-				drop_console: false
 			},
 			mangle: {
-				except: ['$'],
-				screw_ie8 : true,
-				keep_fnames: true
+        except: ['$']
 			}
 		}),
 		new ExtractTextPlugin({

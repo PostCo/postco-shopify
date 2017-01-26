@@ -2,19 +2,20 @@
   display: none; }
   .widget-loader:only-child {
     display: block;
-    margin: 60px auto;
+    margin: 30px auto;
     font-size: 10px;
+    font-size: 5px;
     position: relative;
     text-indent: -9999em;
-    border-top: 1.1em solid rgba(128, 128, 128, 0.2);
-    border-right: 1.1em solid rgba(128, 128, 128, 0.2);
-    border-bottom: 1.1em solid rgba(128, 128, 128, 0.2);
-    border-left: 1.1em solid gray;
+    border-top: 1em solid rgba(128, 128, 128, 0.2);
+    border-right: 1em solid rgba(128, 128, 128, 0.2);
+    border-bottom: 1em solid rgba(128, 128, 128, 0.2);
+    border-left: 1em solid gray;
     -webkit-transform: translateZ(0);
     -ms-transform: translateZ(0);
     transform: translateZ(0);
     -webkit-animation: load8 1.1s infinite linear;
-    animation: load8 1.1s infinite linear;
+    animation: load 8 1.1s infinite linear;
     border-radius: 50%;
     width: 10em;
     height: 10em; }
@@ -48,7 +49,8 @@
   #postco-widget nav.navbar {
     padding: 0.5rem 0rem; }
   #postco-widget .hidden {
-    display: none; }
+    visibility: hidden;
+    height: 0; }
   #postco-widget ul.nav.navbar-nav {
     margin-top: 0;
     padding-left: 0;
@@ -70,7 +72,7 @@
     vertical-align: middle;
     user-select: none;
     border: 1px solid black;
-    padding: .5rem;
+    padding: 0.8rem 0.2rem;
     font-size: 0.8rem;
     border-radius: .3125rem; }
     #postco-widget a.btn.btn-secondary:hover {

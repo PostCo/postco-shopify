@@ -4,54 +4,6 @@ import $ from 'jquery/dist/jquery'
 (global => {
   console.log("PostCo Shopify Integration Script v.3.0 was loaded successfully")
 
-  document.addEventListener("DOMContentLoaded", () => {
-
-    const explanation_block = document.getElementById("explanation");
-    const widget_block = document.getElementById("postco-widget-container");
-
-    document.getElementById("delivery").onclick = function(event) {
-
-      event.preventDefault();
-
-      document.querySelector("a.btn.btn-secondary.active").classList.toggle("active");
-
-      this.classList.toggle("active");
-
-      if (explanation_block.classList.contains("hidden")) {
-        explanation_block.classList.remove("hidden");
-      }
-
-      if (!widget_block.classList.contains("hidden")) {
-        widget_block.classList.add("hidden");
-      }
-    }
-
-    document.getElementById("collection").onclick = function(event) {
-
-      event.preventDefault();
-
-      document.querySelector("a.btn.btn-secondary.active").classList.toggle("active");
-
-      this.classList.toggle("active");
-
-      if (!explanation_block.classList.contains("hidden")) {
-        explanation_block.classList.add("hidden");
-      }
-
-      if (widget_block.classList.contains("hidden")) {
-        widget_block.classList.remove("hidden");
-      }
-    }
-
-  })
-
-  const childResizeCallback = function(height) {
-    let element = document.getElementById('postco-widget-container')
-    let index = element.children.length - 1
-
-    element.children[index].style.height = `${height}px`
-  }
-
   const agentSelectionCallback = function(agent) {
     const address_params = $.param({
       step: 'contact_information',
@@ -73,15 +25,14 @@ import $ from 'jquery/dist/jquery'
     $('#js-postco-agent-id').val(agent.id)
   }
 
-  const agentRemovalCallback = function() {
-    $('form.js-postco-cart').attr("action", '/cart');
+  const agentCancellationCallback = function() {
+    $('form.js-postco-cart').attr("action", '/cart')
     $('#js-postco-agent-id').val('')
   }
 
   $("form.js-postco-cart").prepend(`<input id="js-postco-agent-id" name="attributes[postco-agent-id]" type="hidden" value="">`)
 
-  const containerElement = document.getElementById("postco-widget")
-  console.log(containerElement.offsetWidth)
+  const containerElement = document.getElementById("postco-widget-container")
 
   if (containerElement === null) {
     return
@@ -92,32 +43,28 @@ import $ from 'jquery/dist/jquery'
 
     window.PostCo = xcomponent.create({
       tag: 'postco-widget',
-      // url: 'https://plugin.postco.com.my/delivery',
-      url: 'http://127.0.0.1:4000/delivery',
-      // url: 'https://postco-plugin.dev/delivery',
-      // url: 'https://postco-plugin-production.herokuapp.com/delivery',
+      // url: 'https://plugin.postco.com.my',
+      url: 'http://127.0.0.1:4000',
+      // url: 'https://postco-plugin.dev',
+      // url: 'https://postco-plugin-production.herokuapp.com',
       singleton: true,
       props: {
         apiToken: {
           type: 'string',
           required: true
         },
-         onChildResize: {
-          type: 'function',
-          required: true
-        },
         onAgentSelection: {
           type: 'function',
           required: true
         },
-        onAgentRemoval: {
+        onAgentCancellation: {
           type: 'function',
           required: true
         }
       },
       dimensions: {
-        width: 300,
-        height: 160
+        width: containerElementWidth,
+        height: 700
       },
       contexts: {
         iframe: true,
@@ -127,12 +74,62 @@ import $ from 'jquery/dist/jquery'
       defaultContext: 'iframe'
     })
 
-    window.PostCo.render({
-      apiToken: apiToken,
-      onChildResize: childResizeCallback,
-      onAgentSelection: agentSelectionCallback,
-      onAgentRemoval: agentRemovalCallback
-    }, '#postco-widget-container')
+		const renderWidget = () => {
+			window.PostCo.render({
+				apiToken: apiToken,
+				onAgentSelection: agentSelectionCallback,
+				onAgentCancellation: agentCancellationCallback
+			}, '#postco-widget-container')
+		}
+
+		const removeWidget = () => {
+			$("#postco-widget-container iframe").remove()
+		}
+
+    document.addEventListener("DOMContentLoaded", () => {
+			renderWidget()
+
+      const explanation_block = document.getElementById("explanation")
+      const widget_block = document.getElementById("postco-widget-container")
+
+      document.getElementById("delivery").onclick = function(event) {
+        event.preventDefault()
+				removeWidget()
+				setTimeout(() => {
+					agentCancellationCallback()
+					renderWidget()
+				}, 1000)
+
+        document.querySelector("a.btn.btn-secondary.active").classList.toggle("active")
+
+        this.classList.toggle("active")
+
+        if (explanation_block.classList.contains("hidden")) {
+          explanation_block.classList.remove("hidden")
+        }
+
+        if (!widget_block.classList.contains("hidden")) {
+          widget_block.classList.add("hidden")
+        }
+
+      }
+
+      document.getElementById("collection").onclick = function(event) {
+        event.preventDefault()
+
+        document.querySelector("a.btn.btn-secondary.active").classList.toggle("active")
+
+        this.classList.toggle("active")
+
+        if (!explanation_block.classList.contains("hidden")) {
+          explanation_block.classList.add("hidden")
+        }
+
+        if (widget_block.classList.contains("hidden")) {
+          widget_block.classList.remove("hidden")
+        }
+      }
+    })
 
     console.log("PostCo Shopify Integration Script v.3.0 was executed successfully")
   }
