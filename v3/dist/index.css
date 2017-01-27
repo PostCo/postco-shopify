@@ -3,7 +3,6 @@
   .widget-loader:only-child {
     display: block;
     margin: 30px auto;
-    font-size: 10px;
     font-size: 5px;
     position: relative;
     text-indent: -9999em;

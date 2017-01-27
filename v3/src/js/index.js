@@ -51,7 +51,8 @@ import $ from 'jquery/dist/jquery'
       props: {
         apiToken: {
           type: 'string',
-          required: true
+          required: true,
+          queryParam: true
         },
         onAgentSelection: {
           type: 'function',
