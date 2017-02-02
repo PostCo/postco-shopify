@@ -61,7 +61,11 @@ import $ from 'jquery/dist/jquery'
         onAgentCancellation: {
           type: 'function',
           required: true
-        }
+        },
+        // reloadWidget: function(){
+        //   Turbolinks.visit('http://localhost:4000/v3');
+        //   console.log('visited')
+        // }
       },
       dimensions: {
         width: containerElementWidth,
@@ -87,49 +91,27 @@ import $ from 'jquery/dist/jquery'
 			$("#postco-widget-container iframe").remove()
 		}
 
-    document.addEventListener("DOMContentLoaded", () => {
+    $(document).ready(() => {
 			renderWidget()
 
-      const explanation_block = document.getElementById("explanation")
-      const widget_block = document.getElementById("postco-widget-container")
-
-      document.getElementById("delivery").onclick = function(event) {
-        event.preventDefault()
-				removeWidget()
-				setTimeout(() => {
-					agentCancellationCallback()
-					renderWidget()
-				}, 1000)
-
-        document.querySelector("a.btn.btn-secondary.active").classList.toggle("active")
-
-        this.classList.toggle("active")
-
-        if (explanation_block.classList.contains("hidden")) {
-          explanation_block.classList.remove("hidden")
+      $("#delivery").click(function(event) {
+        if (!$(this).hasClass("active")){
+          removeWidget()
+  				setTimeout(() => {
+  					agentCancellationCallback()
+  					renderWidget()
+  				}, 1000)
+          $(".nav-item").siblings().toggleClass("active")
+          $(".body-block").toggleClass("hidden")
         }
+      })
 
-        if (!widget_block.classList.contains("hidden")) {
-          widget_block.classList.add("hidden")
+      $("#collection").click(function(event) {
+        if (!$(this).hasClass("active")){
+          $(".nav-item").siblings().toggleClass("active")
+          $(".body-block").toggleClass("hidden")
         }
-
-      }
-
-      document.getElementById("collection").onclick = function(event) {
-        event.preventDefault()
-
-        document.querySelector("a.btn.btn-secondary.active").classList.toggle("active")
-
-        this.classList.toggle("active")
-
-        if (!explanation_block.classList.contains("hidden")) {
-          explanation_block.classList.add("hidden")
-        }
-
-        if (widget_block.classList.contains("hidden")) {
-          widget_block.classList.remove("hidden")
-        }
-      }
+      })
     })
 
     console.log("PostCo Shopify Integration Script v.3.0 was executed successfully")
