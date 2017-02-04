@@ -30,6 +30,10 @@ import $ from 'jquery/dist/jquery'
     $('#js-postco-agent-id').val('')
   }
 
+  const onDeliverySelectionClickCallback = (callback) => {
+    window.resetXChild = callback
+  }
+
   $("form.js-postco-cart").prepend(`<input id="js-postco-agent-id" name="attributes[postco-agent-id]" type="hidden" value="">`)
 
   const containerElement = document.getElementById("postco-widget-container")
@@ -43,8 +47,8 @@ import $ from 'jquery/dist/jquery'
 
     window.PostCo = xcomponent.create({
       tag: 'postco-widget',
-      // url: 'https://plugin.postco.com.my/v3',
-      url: 'http://127.0.0.1:4000/v3',
+      url: 'https://plugin.postco.com.my/v3',
+      // url: 'http://127.0.0.1:4000/v3',
       // url: 'https://postco-plugin.dev/v3',
       // url: 'https://postco-plugin-production.herokuapp.com/v3',
       singleton: true,
@@ -62,10 +66,10 @@ import $ from 'jquery/dist/jquery'
           type: 'function',
           required: true
         },
-        // reloadWidget: function(){
-        //   Turbolinks.visit('http://localhost:4000/v3');
-        //   console.log('visited')
-        // }
+        onDeliverySelectionClick: {
+          type: 'function',
+          required: false
+        }
       },
       dimensions: {
         width: containerElementWidth,
@@ -79,34 +83,26 @@ import $ from 'jquery/dist/jquery'
       defaultContext: 'iframe'
     })
 
-		const renderWidget = () => {
-			window.PostCo.render({
-				apiToken: apiToken,
-				onAgentSelection: agentSelectionCallback,
-				onAgentCancellation: agentCancellationCallback
-			}, '#postco-widget-container')
-		}
-
-		const removeWidget = () => {
-			$("#postco-widget-container iframe").remove()
-		}
+    window.PostCo.render({
+      apiToken: apiToken,
+      onAgentSelection: agentSelectionCallback,
+      onAgentCancellation: agentCancellationCallback,
+      onDeliverySelectionClick: onDeliverySelectionClickCallback
+    }, '#postco-widget-container')
 
     $(document).ready(() => {
-			renderWidget()
-
       $("#delivery").click(function(event) {
+        event.preventDefault()
         if (!$(this).hasClass("active")){
-          removeWidget()
-  				setTimeout(() => {
-  					agentCancellationCallback()
-  					renderWidget()
-  				}, 1000)
+          agentCancellationCallback()
+          window.resetXChild()
           $(".nav-item").siblings().toggleClass("active")
           $(".body-block").toggleClass("hidden")
         }
       })
 
       $("#collection").click(function(event) {
+        event.preventDefault()
         if (!$(this).hasClass("active")){
           $(".nav-item").siblings().toggleClass("active")
           $(".body-block").toggleClass("hidden")
