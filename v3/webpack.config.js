@@ -1,3 +1,4 @@
+const Dotenv = require('dotenv-webpack')
 const path = require('path')
 const webpack = require("webpack")
 const WebpackDevServer = require('webpack-dev-server')
@@ -63,7 +64,8 @@ const config = {
 		new ExtractTextPlugin({
 			filename: '[name].css',
 			allChunks: true,
-		})
+		}),
+    new Dotenv()
 	]
 }
 

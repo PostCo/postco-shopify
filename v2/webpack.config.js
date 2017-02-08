@@ -1,3 +1,4 @@
+const Dotenv = require('dotenv-webpack')
 const path = require('path')
 const webpack = require("webpack")
 const WebpackDevServer = require('webpack-dev-server')
@@ -38,14 +39,15 @@ const config = {
 			comments: false,
 			compress: {
 				warnings: false,
-				drop_console: true
+				drop_console: false
 			},
 			mangle: {
 				except: ['$'],
 				screw_ie8 : true,
 				keep_fnames: true
-			}
-		})
+      },
+    }),
+    new Dotenv()
 	]
 }
 

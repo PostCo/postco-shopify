@@ -47,10 +47,7 @@ import $ from 'jquery/dist/jquery'
 
     window.PostCo = xcomponent.create({
       tag: 'postco-widget',
-      url: 'https://plugin.postco.com.my/v3',
-      // url: 'http://127.0.0.1:4000/v3',
-      // url: 'https://postco-plugin.dev/v3',
-      // url: 'https://postco-plugin-production.herokuapp.com/v3',
+      url: process.env.XCOMPONENT_URL,
       singleton: true,
       props: {
         apiToken: {
