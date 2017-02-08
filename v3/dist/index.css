@@ -115,6 +115,8 @@
     border-radius: .3125rem; }
     #postco-widget a.btn.btn-secondary:hover {
       filter: invert(10%); }
+    #postco-widget a.btn.btn-secondary.in-progress {
+      cursor: progress; }
     #postco-widget a.btn.btn-secondary p {
       margin: 0rem; }
   #postco-widget .active {

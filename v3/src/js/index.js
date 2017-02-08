@@ -88,8 +88,9 @@ import $ from 'jquery/dist/jquery'
     }, '#postco-widget-container')
 
     $(document).ready(() => {
-      $("#delivery").click(function(event) {
-        event.preventDefault()
+      $("#postco-widget .btn").removeClass("in-progress")
+
+      $("#delivery").click(function() {
         if (!$(this).hasClass("active")){
           agentCancellationCallback()
           window.resetXChild()
@@ -98,8 +99,7 @@ import $ from 'jquery/dist/jquery'
         }
       })
 
-      $("#collection").click(function(event) {
-        event.preventDefault()
+      $("#collection").click(function() {
         if (!$(this).hasClass("active")){
           $(".nav-item").siblings().toggleClass("active")
           $(".body-block").toggleClass("hidden")

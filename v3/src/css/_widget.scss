@@ -23,6 +23,11 @@
     &:hover {
       filter: invert(10%);
     }
+
+    &.in-progress {
+      cursor: progress;
+    }
+
     min-width: 8rem;
     text-decoration: none;
     border-color: black;
