@@ -4,6 +4,10 @@ import $ from 'jquery/dist/jquery'
 (global => {
   console.log("PostCo Shopify Integration Script v.2.0 was loaded successfully")
 
+  const childResizeCallback = function(height) {
+    document.getElementById('postco-widget-container').childNodes[1].style.height = `${height}px`
+  }
+
   const agentSelectionCallback = function(agent) {
     const address_params = $.param({
       step: 'contact_information',
@@ -57,11 +61,15 @@ import $ from 'jquery/dist/jquery'
         onAgentCancellation: {
           type: 'function',
           required: true
+        },
+        onChildResize: {
+          type: 'function',
+          required: false
         }
       },
       dimensions: {
         width: containerElementWidth,
-        height: 700
+        height: 170
       },
       contexts: {
         iframe: true,
@@ -74,7 +82,8 @@ import $ from 'jquery/dist/jquery'
     window.PostCo.render({
       apiToken: apiToken,
       onAgentSelection: agentSelectionCallback,
-      onAgentCancellation: agentCancellationCallback
+      onAgentCancellation: agentCancellationCallback,
+      onChildResize: childResizeCallback
     }, '#postco-widget-container')
 
     console.log("PostCo Shopify Integration Script v.2.0 was executed successfully")
