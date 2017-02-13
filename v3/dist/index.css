@@ -1,6 +1,6 @@
-.widget-loader {
+.pw-loader {
   display: none; }
-  .widget-loader:only-child {
+  .pw-loader:only-child {
     display: block;
     margin: 30px auto;
     font-size: 5px;
@@ -18,7 +18,7 @@
     border-radius: 50%;
     width: 10em;
     height: 10em; }
-    .widget-loader:only-child:after {
+    .pw-loader:only-child:after {
       border-radius: 50%;
       width: 10em;
       height: 10em; }
@@ -84,19 +84,19 @@
   line-height: 1.5;
   color: black;
   width: 100%; }
-  #postco-widget nav.navbar {
-    padding: 0.5rem 0rem; }
-  #postco-widget .hidden {
+  #postco-widget .pw-hidden {
     visibility: hidden;
     height: 0; }
-  #postco-widget ul.nav.navbar-nav {
+  #postco-widget .pw-navbar {
+    padding: 0.5rem 0rem; }
+  #postco-widget .pw-navbar-nav {
     margin-top: 0;
     padding-left: 0;
     margin-bottom: 0;
     list-style: none;
     display: flex;
     justify-content: space-between; }
-  #postco-widget a.btn.btn-secondary {
+  #postco-widget .pw-btn {
     min-width: 8rem;
     text-decoration: none;
     border-color: black;
@@ -113,15 +113,15 @@
     padding: 0.8rem 0.2rem;
     font-size: 0.8rem;
     border-radius: .3125rem; }
-    #postco-widget a.btn.btn-secondary:hover {
+    #postco-widget .pw-btn:hover {
       filter: invert(10%); }
-    #postco-widget a.btn.btn-secondary.in-progress {
+    #postco-widget .pw-btn.pw-in-progress {
       cursor: progress; }
-    #postco-widget a.btn.btn-secondary p {
+    #postco-widget .pw-btn p {
       margin: 0rem; }
-  #postco-widget .active {
+  #postco-widget .pw-active {
     filter: invert(100%) !important; }
-  #postco-widget .text-xs-center {
+  #postco-widget .pw-text {
     text-align: center; }
 
 /*# sourceMappingURL=index.css.map*/

@@ -88,21 +88,21 @@ import $ from 'jquery/dist/jquery'
     }, '#postco-widget-container')
 
     $(document).ready(() => {
-      $("#postco-widget .btn").removeClass("in-progress")
+      $("#postco-widget .pw-btn").removeClass("pw-in-progress")
 
       $("#delivery").click(function() {
-        if (!$(this).hasClass("active")){
+        if (!$(this).hasClass("pw-active")){
           agentCancellationCallback()
           window.resetXChild()
-          $(".nav-item").siblings().toggleClass("active")
-          $(".body-block").toggleClass("hidden")
+          $(".pw-nav-item").siblings().toggleClass("pw-active")
+          $(".pw-content").toggleClass("pw-hidden")
         }
       })
 
       $("#collection").click(function() {
-        if (!$(this).hasClass("active")){
-          $(".nav-item").siblings().toggleClass("active")
-          $(".body-block").toggleClass("hidden")
+        if (!$(this).hasClass("pw-active")){
+          $(".pw-nav-item").siblings().toggleClass("pw-active")
+          $(".pw-content").toggleClass("pw-hidden")
         }
       })
     })

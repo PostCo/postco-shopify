@@ -4,14 +4,17 @@
   line-height: 1.5;
   color: black;
   width: 100%;
-  nav.navbar {
-    padding: 0.5rem 0rem;
-  }
-  .hidden {
+
+  .pw-hidden {
     visibility: hidden;
     height: 0;
   }
-  ul.nav.navbar-nav {
+
+  .pw-navbar {
+    padding: 0.5rem 0rem;
+  }
+
+  .pw-navbar-nav {
     margin-top: 0;
     padding-left: 0;
     margin-bottom: 0;
@@ -19,12 +22,13 @@
     display: flex;
     justify-content: space-between;
   }
-  a.btn.btn-secondary {
+
+  .pw-btn {
     &:hover {
       filter: invert(10%);
     }
 
-    &.in-progress {
+    &.pw-in-progress {
       cursor: progress;
     }
 
@@ -44,14 +48,17 @@
     padding: 0.8rem 0.2rem;
     font-size: 0.8rem;
     border-radius: .3125rem;
+
     p {
       margin: 0rem;
     }
   }
-  .active {
+
+  .pw-active {
     filter: invert(100%) !important;
   }
-  .text-xs-center {
+
+  .pw-text {
     text-align: center;
   }
 }
