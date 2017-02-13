@@ -80,7 +80,7 @@
 
 #postco-widget {
   font-family: Lato, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Arial, sans-serif;
-  font-size: 1rem;
+  font-size: 16px;
   line-height: 1.5;
   color: black;
   width: 100%; }
@@ -88,7 +88,7 @@
     visibility: hidden;
     height: 0; }
   #postco-widget .pw-navbar {
-    padding: 0.5rem 0rem; }
+    padding: 8px 0px; }
   #postco-widget .pw-navbar-nav {
     margin-top: 0;
     padding-left: 0;
@@ -97,7 +97,7 @@
     display: flex;
     justify-content: space-between; }
   #postco-widget .pw-btn {
-    min-width: 8rem;
+    min-width: 128px;
     text-decoration: none;
     border-color: black;
     color: black;
@@ -110,18 +110,20 @@
     vertical-align: middle;
     user-select: none;
     border: 1px solid black;
-    padding: 0.8rem 0.2rem;
-    font-size: 0.8rem;
-    border-radius: .3125rem; }
+    padding: 12.8px 3.2px;
+    font-size: 12.8px;
+    border-radius: 5px; }
     #postco-widget .pw-btn:hover {
       filter: invert(10%); }
     #postco-widget .pw-btn.pw-in-progress {
       cursor: progress; }
     #postco-widget .pw-btn p {
-      margin: 0rem; }
+      margin: 0px; }
   #postco-widget .pw-active {
     filter: invert(100%) !important; }
   #postco-widget .pw-text {
     text-align: center; }
+    #postco-widget .pw-text p {
+      margin: 16px 0px; }
 
 /*# sourceMappingURL=index.css.map*/
