@@ -29,9 +29,10 @@
     }
 
     &.pw-in-progress {
-      cursor: progress;
+      cursor: progress !important;
     }
 
+    cursor: pointer;
     min-width: 128px;
     text-decoration: none;
     border-color: black;

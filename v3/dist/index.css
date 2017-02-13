@@ -97,6 +97,7 @@
     display: flex;
     justify-content: space-between; }
   #postco-widget .pw-btn {
+    cursor: pointer;
     min-width: 128px;
     text-decoration: none;
     border-color: black;
@@ -116,7 +117,7 @@
     #postco-widget .pw-btn:hover {
       filter: invert(10%); }
     #postco-widget .pw-btn.pw-in-progress {
-      cursor: progress; }
+      cursor: progress !important; }
     #postco-widget .pw-btn p {
       margin: 0px; }
   #postco-widget .pw-active {
