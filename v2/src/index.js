@@ -2,13 +2,13 @@ import xcomponent from 'xcomponent/dist/xcomponent'
 import $ from 'jquery/dist/jquery'
 
 (global => {
-  console.log("PostCo Shopify Integration Script v.2.0 was loaded successfully")
+  console.log('PostCo Shopify Integration Script v.2.0 was loaded successfully')
 
-  const childResizeCallback = function(height) {
+  const childResizeCallback = function (height) {
     document.getElementById('postco-widget-container').childNodes[1].style.height = `${height}px`
   }
 
-  const agentSelectionCallback = function(agent) {
+  const agentSelectionCallback = function (agent) {
     const address_params = $.param({
       step: 'contact_information',
       checkout: {
@@ -24,25 +24,25 @@ import $ from 'jquery/dist/jquery'
       }
     })
 
-    $('form.js-postco-cart').attr("action", 'cart?' + address_params)
+    $('form.js-postco-cart').attr('action', 'cart?' + address_params)
     $('#js-postco-agent-id').val(agent.id)
   }
 
-  const agentCancellationCallback = function() {
-    $('form.js-postco-cart').attr("action", '/cart');
+  const agentCancellationCallback = function () {
+    $('form.js-postco-cart').attr('action', '/cart')
     $('#js-postco-agent-id').val('')
   }
 
-  $("form.js-postco-cart").prepend(`<input id="js-postco-agent-id" name="attributes[postco-agent-id]" type="hidden" value="">`)
+  $('form.js-postco-cart').prepend(`<input id="js-postco-agent-id" name="attributes[postco-agent-id]" type="hidden" value="">`)
 
-  const containerElement = document.getElementById("postco-widget-container")
+  const containerElement = document.getElementById('postco-widget-container')
 
   if (containerElement === null) {
     return
   } else {
     const containerElementWidth = containerElement.offsetWidth
 
-    const apiToken = containerElement.getAttribute("data-postco-api")
+    const apiToken = containerElement.getAttribute('data-postco-api')
 
     window.PostCo = xcomponent.create({
       tag: 'postco-widget',
@@ -86,6 +86,6 @@ import $ from 'jquery/dist/jquery'
       onChildResize: childResizeCallback
     }, '#postco-widget-container')
 
-    console.log("PostCo Shopify Integration Script v.2.0 was executed successfully")
+    console.log('PostCo Shopify Integration Script v.2.0 was executed successfully')
   }
 })(window)
