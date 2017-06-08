@@ -13,6 +13,7 @@ import $ from 'jquery/dist/jquery'
       step: 'contact_information',
       checkout: {
         shipping_address: {
+          last_name: "<Insert Your Last Name> PostCo",
           company: agent.company,
           address1: agent.address1,
           address2: agent.address2,
