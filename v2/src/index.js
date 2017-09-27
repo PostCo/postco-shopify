@@ -70,7 +70,7 @@ import $ from 'jquery/dist/jquery'
       },
       dimensions: {
         width: containerElementWidth,
-        height: 560
+        height: 180
       },
       contexts: {
         iframe: true,

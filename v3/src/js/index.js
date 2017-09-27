@@ -1,15 +1,16 @@
 import xcomponent from 'xcomponent/dist/xcomponent'
-import $ from 'jquery/dist/jquery'
+import jqueryParam from 'jquery-param/jquery-param'
+// import getParam from '../../../shared/get_param'
 
 (global => {
-  console.log("PostCo Shopify Integration Script v.3.0 was loaded successfully")
+  console.log('PostCo Shopify Integration Script v.3.0 was loaded successfully')
 
-  const agentSelectionCallback = function(agent) {
-    const address_params = $.param({
+  const agentSelectionCallback = function (agent) {
+    const addressParams = jqueryParam({
       step: 'contact_information',
       checkout: {
         shipping_address: {
-          last_name: "<Insert Your Last Name> PostCo",
+          last_name: '<Insert Your Last Name> PostCo',
           company: agent.company,
           address1: agent.address1,
           address2: agent.address2,
@@ -20,30 +21,32 @@ import $ from 'jquery/dist/jquery'
         }
       }
     })
-
-    $('form.js-postco-cart').attr("action", 'cart?' + address_params)
-    $('#js-postco-agent-id').val(agent.id)
+    Array.from(document.querySelectorAll('form.js-postco-cart')).forEach((x) => x.setAttribute('action', 'cart?' + addressParams))
+    document.getElementById('js-postco-agent-id').value = agent.id
   }
 
-  const agentCancellationCallback = function() {
-    $('form.js-postco-cart').attr("action", '/cart')
-    $('#js-postco-agent-id').val('')
+  const agentCancellationCallback = function () {
+    Array.from(document.querySelectorAll('form.js-postco-cart')).forEach((x) => x.setAttribute('action', '/cart'))
+    document.getElementById('js-postco-agent-id').value = ''
   }
 
   const onDeliverySelectionClickCallback = (callback) => {
     window.resetXChild = callback
   }
+  let inputElement = document.createElement('input')
+  inputElement.setAttribute('id', 'js-postco-agent-id')
+  inputElement.setAttribute('name', 'attributes[postco-agent-id]')
+  inputElement.setAttribute('type', 'hidden')
+  inputElement.setAttribute('value', '')
 
-  $("form.js-postco-cart").prepend(`<input id="js-postco-agent-id" name="attributes[postco-agent-id]" type="hidden" value="">`)
+  Array.from(document.querySelectorAll('form.js-postco-cart')).forEach((x) => x.prepend(inputElement))
 
-  const containerElement = document.getElementById("postco-widget-container")
+  const containerElement = document.getElementById('postco-widget-container')
 
-  if (containerElement === null) {
-    return
-  } else {
+  if (containerElement !== null) {
     const containerElementWidth = containerElement.offsetWidth
 
-    const apiToken = containerElement.getAttribute("data-postco-api")
+    const apiToken = containerElement.getAttribute('data-postco-api')
 
     window.PostCo = xcomponent.create({
       tag: 'postco-widget',
@@ -70,7 +73,7 @@ import $ from 'jquery/dist/jquery'
       },
       dimensions: {
         width: containerElementWidth,
-        height: 700
+        height: 0
       },
       contexts: {
         iframe: true,
@@ -87,26 +90,36 @@ import $ from 'jquery/dist/jquery'
       onDeliverySelectionClick: onDeliverySelectionClickCallback
     }, '#postco-widget-container')
 
-    $(document).ready(() => {
-      $("#postco-widget .pw-btn").removeClass("pw-in-progress")
+    document.addEventListener('DOMContentLoaded', () => {
+      Array.from(document.querySelectorAll('#postco-widget .pw-btn')).forEach((x) => x.classList.remove('pw-in-progress'))
 
-      $("#delivery").click(function() {
-        if (!$(this).hasClass("pw-active")){
+      document.getElementById('delivery').onclick = function () {
+        Array.from(document.querySelectorAll('iframe')).forEach((x) => (x.style.height = '180px'))
+        if (!this.classList.contains('pw-active')) {
           agentCancellationCallback()
           window.resetXChild()
-          $(".pw-nav-item").siblings().toggleClass("pw-active")
-          $(".pw-content").toggleClass("pw-hidden")
+          let navItems = Array.from(document.getElementsByClassName('pw-nav-item'))
+          navItems.forEach((element) => {
+            const siblings = Array.from(element.parentElement.children).filter((x) => x !== element)
+            siblings.forEach((x) => x.classList.toggle('pw-active'))
+          })
+          Array.from(document.getElementsByClassName('pw-content')).forEach((x) => x.classList.toggle('pw-hidden'))
         }
-      })
+      }
 
-      $("#collection").click(function() {
-        if (!$(this).hasClass("pw-active")){
-          $(".pw-nav-item").siblings().toggleClass("pw-active")
-          $(".pw-content").toggleClass("pw-hidden")
+      document.getElementById('collection').onclick = function () {
+        Array.from(document.querySelectorAll('iframe')).forEach((x) => (x.style.height = '780px'))
+        if (!this.classList.contains('pw-active')) {
+          let navItems = Array.from(document.getElementsByClassName('pw-nav-item'))
+          navItems.forEach((element) => {
+            const siblings = Array.from(element.parentElement.children).filter((x) => x !== element)
+            siblings.forEach((x) => x.classList.toggle('pw-active'))
+          })
+          Array.from(document.getElementsByClassName('pw-content')).forEach((x) => x.classList.toggle('pw-hidden'))
         }
-      })
+      }
     })
 
-    console.log("PostCo Shopify Integration Script v.3.0 was executed successfully")
+    console.log('PostCo Shopify Integration Script v.3.0 was executed successfully')
   }
 })(window)
