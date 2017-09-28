@@ -10,7 +10,7 @@ const config = {
   },
   devtool: 'source-map',
   output: {
-    path: path.resolve(__dirname, './build'),
+    path: path.resolve(__dirname, './dist'),
     filename: '[name].min.js',
     publicPath: __dirname + '/'
   },
