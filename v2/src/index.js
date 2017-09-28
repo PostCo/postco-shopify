@@ -1,19 +1,19 @@
 import xcomponent from 'xcomponent/dist/xcomponent'
-import $ from 'jquery/dist/jquery'
+import jqueryParam from 'jquery-param/jquery-param'
 
 (global => {
   console.log('PostCo Shopify Integration Script v.2.0 was loaded successfully')
 
   const childResizeCallback = function (height) {
-    document.getElementById('postco-widget-container').childNodes[1].style.height = `${height}px`
+    Array.from(document.getElementsByClassName('xcomponent-outlet')).forEach((x) => (x.style.height = `${height}px`))
   }
 
   const agentSelectionCallback = function (agent) {
-    const address_params = $.param({
+    const addressParams = jqueryParam({
       step: 'contact_information',
       checkout: {
         shipping_address: {
-          last_name: "<Insert Your Last Name> PostCo",
+          last_name: '<Insert Your Last Name> PostCo',
           company: agent.company,
           address1: agent.address1,
           address2: agent.address2,
@@ -25,27 +25,31 @@ import $ from 'jquery/dist/jquery'
       }
     })
 
-    $('form.js-postco-cart').attr('action', 'cart?' + address_params)
-    $('#js-postco-agent-id').val(agent.id)
+    Array.from(document.querySelectorAll('form.js-postco-cart')).forEach((x) => x.setAttribute('action', 'cart?' + addressParams))
+    document.getElementById('js-postco-agent-id').value = agent.id
   }
 
   const agentCancellationCallback = function () {
-    $('form.js-postco-cart').attr('action', '/cart')
-    $('#js-postco-agent-id').val('')
+    Array.from(document.querySelectorAll('form.js-postco-cart')).forEach((x) => x.setAttribute('action', '/cart'))
+    document.getElementById('js-postco-agent-id').value = ''
   }
 
-  $('form.js-postco-cart').prepend(`<input id="js-postco-agent-id" name="attributes[postco-agent-id]" type="hidden" value="">`)
+  let inputElement = document.createElement('input')
+  inputElement.setAttribute('id', 'js-postco-agent-id')
+  inputElement.setAttribute('name', 'attributes[postco-agent-id]')
+  inputElement.setAttribute('type', 'hidden')
+  inputElement.setAttribute('value', '')
+
+  Array.from(document.querySelectorAll('form.js-postco-cart')).forEach((x) => x.prepend(inputElement))
 
   const containerElement = document.getElementById('postco-widget-container')
 
-  if (containerElement === null) {
-    return
-  } else {
-    const containerElementWidth = containerElement.offsetWidth
+  if (containerElement !== null) {
+    const containerElementWidth = `${containerElement.offsetWidth}px`
 
     const apiToken = containerElement.getAttribute('data-postco-api')
 
-    window.PostCo = xcomponent.create({
+    const PostCoWidgetXComponent = xcomponent.create({
       tag: 'postco-widget',
       url: process.env.XCOMPONENT_URL,
       singleton: true,
@@ -70,17 +74,11 @@ import $ from 'jquery/dist/jquery'
       },
       dimensions: {
         width: containerElementWidth,
-        height: 180
-      },
-      contexts: {
-        iframe: true,
-        lightbox: false,
-        popup: false
-      },
-      defaultContext: 'iframe'
+        height: '180px'
+      }
     })
 
-    window.PostCo.render({
+    PostCoWidgetXComponent.render({
       apiToken: apiToken,
       onAgentSelection: agentSelectionCallback,
       onAgentCancellation: agentCancellationCallback,

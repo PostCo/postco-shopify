@@ -1,6 +1,5 @@
 import xcomponent from 'xcomponent/dist/xcomponent'
 import jqueryParam from 'jquery-param/jquery-param'
-// import getParam from '../../../shared/get_param'
 
 (global => {
   console.log('PostCo Shopify Integration Script v.3.0 was loaded successfully')
@@ -44,11 +43,11 @@ import jqueryParam from 'jquery-param/jquery-param'
   const containerElement = document.getElementById('postco-widget-container')
 
   if (containerElement !== null) {
-    const containerElementWidth = containerElement.offsetWidth
+    const containerElementWidth = `${containerElement.offsetWidth}px`
 
     const apiToken = containerElement.getAttribute('data-postco-api')
 
-    window.PostCo = xcomponent.create({
+    const PostCoWidgetXComponent = xcomponent.create({
       tag: 'postco-widget',
       url: process.env.XCOMPONENT_URL,
       singleton: true,
@@ -73,17 +72,11 @@ import jqueryParam from 'jquery-param/jquery-param'
       },
       dimensions: {
         width: containerElementWidth,
-        height: 0
-      },
-      contexts: {
-        iframe: true,
-        lightbox: false,
-        popup: false
-      },
-      defaultContext: 'iframe'
+        height: '0px'
+      }
     })
 
-    window.PostCo.render({
+    PostCoWidgetXComponent.render({
       apiToken: apiToken,
       onAgentSelection: agentSelectionCallback,
       onAgentCancellation: agentCancellationCallback,
