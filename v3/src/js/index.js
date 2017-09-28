@@ -1,11 +1,13 @@
 import xcomponent from 'xcomponent/dist/xcomponent'
 import jqueryParam from 'jquery-param/jquery-param'
+import $ from 'jquery/dist/jquery'
+
 
 (global => {
   console.log('PostCo Shopify Integration Script v.3.0 was loaded successfully')
 
   const agentSelectionCallback = function (agent) {
-    const addressParams = jqueryParam({
+    const addressParams = $.param({
       step: 'contact_information',
       checkout: {
         shipping_address: {
@@ -20,7 +22,8 @@ import jqueryParam from 'jquery-param/jquery-param'
         }
       }
     })
-    Array.from(document.querySelectorAll('form.js-postco-cart')).forEach((x) => x.setAttribute('action', 'cart?' + addressParams))
+    // Array.from(document.querySelectorAll('form.js-postco-cart')).forEach((x) => x.setAttribute('action', 'cart?' + addressParams))
+    $('form.js-postco-cart').attr("action", 'cart?' + addressParams)
     document.getElementById('js-postco-agent-id').value = agent.id
   }
 
@@ -87,7 +90,7 @@ import jqueryParam from 'jquery-param/jquery-param'
       Array.from(document.querySelectorAll('#postco-widget .pw-btn')).forEach((x) => x.classList.remove('pw-in-progress'))
 
       document.getElementById('delivery').onclick = function () {
-        Array.from(document.querySelectorAll('iframe')).forEach((x) => (x.style.height = '180px'))
+        Array.from(document.querySelectorAll('.xcomponent-outlet')).forEach((x) => (x.style.height = '0px'))
         if (!this.classList.contains('pw-active')) {
           agentCancellationCallback()
           window.resetXChild()
@@ -101,7 +104,7 @@ import jqueryParam from 'jquery-param/jquery-param'
       }
 
       document.getElementById('collection').onclick = function () {
-        Array.from(document.querySelectorAll('iframe')).forEach((x) => (x.style.height = '780px'))
+        Array.from(document.querySelectorAll('.xcomponent-outlet')).forEach((x) => (x.style.height = '630px'))
         if (!this.classList.contains('pw-active')) {
           let navItems = Array.from(document.getElementsByClassName('pw-nav-item'))
           navItems.forEach((element) => {
