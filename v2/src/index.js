@@ -36,8 +36,6 @@ import jqueryParam from 'jquery-param/jquery-param'
     document.getElementById('checkout_btn').name = 'checkout'
   }
 
-  document.querySelectorAll("input[name='checkout'][type='submit']")[0].id = 'checkout_btn'
-
   let inputElement = document.createElement('input')
   inputElement.setAttribute('id', 'js-postco-agent-id')
   inputElement.setAttribute('name', 'attributes[postco-agent-id]')
@@ -88,6 +86,14 @@ import jqueryParam from 'jquery-param/jquery-param'
       onAgentCancellation: agentCancellationCallback,
       onChildResize: childResizeCallback
     }, '#postco-widget-container')
+
+    document.addEventListener('DOMContentLoaded', () => {
+      Array.from(document.querySelectorAll("input[name='update'][type='submit'].update, .update")).forEach((x) => x.onclick = function () {
+        Array.from(document.querySelectorAll('form.js-postco-cart')).forEach((x) => x.setAttribute('action', '/cart'))
+      })
+
+      document.querySelectorAll("input[name='checkout'][type='submit']")[0].id = 'checkout_btn'
+    })
 
     console.log('PostCo Shopify Integration Script v.2.0 was executed successfully')
   }
