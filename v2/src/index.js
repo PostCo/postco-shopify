@@ -27,12 +27,16 @@ import jqueryParam from 'jquery-param/jquery-param'
 
     Array.from(document.querySelectorAll('form.js-postco-cart')).forEach((x) => x.setAttribute('action', 'cart?' + addressParams))
     document.getElementById('js-postco-agent-id').value = agent.id
+    document.getElementById('checkout_btn').name = 'update'
   }
 
   const agentCancellationCallback = function () {
     Array.from(document.querySelectorAll('form.js-postco-cart')).forEach((x) => x.setAttribute('action', '/cart'))
     document.getElementById('js-postco-agent-id').value = ''
+    document.getElementById('checkout_btn').name = 'checkout'
   }
+
+  document.querySelectorAll("input[name='checkout'][type='submit']")[0].id = 'checkout_btn'
 
   let inputElement = document.createElement('input')
   inputElement.setAttribute('id', 'js-postco-agent-id')
