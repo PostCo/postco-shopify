@@ -35,8 +35,6 @@ import jqueryParam from 'jquery-param/jquery-param'
     window.resetXChild = callback
   }
 
-  document.querySelectorAll("input[name='checkout'][type='submit']")[0].id = 'checkout_btn'
-
   let inputElement = document.createElement('input')
   inputElement.setAttribute('id', 'js-postco-agent-id')
   inputElement.setAttribute('name', 'attributes[postco-agent-id]')
@@ -44,6 +42,12 @@ import jqueryParam from 'jquery-param/jquery-param'
   inputElement.setAttribute('value', '')
 
   Array.from(document.querySelectorAll('form.js-postco-cart')).forEach((x) => x.prepend(inputElement))
+
+  document.querySelectorAll("input[name='update'][type='submit'][class='update']")[0].onclick = function () {
+    Array.from(document.querySelectorAll('form.js-postco-cart')).forEach((x) => x.setAttribute('action', '/cart'))
+  }
+
+  document.querySelectorAll("input[name='checkout'][type='submit']")[0].id = 'checkout_btn'
 
   const containerElement = document.getElementById('postco-widget-container')
 
