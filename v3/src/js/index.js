@@ -35,6 +35,10 @@ import jqueryParam from 'jquery-param/jquery-param'
     window.resetXChild = callback
   }
 
+  document.querySelectorAll("input[name='update'][type='submit'][class='update']")[0].onclick = function () {
+    Array.from(document.querySelectorAll('form.js-postco-cart')).forEach((x) => x.setAttribute('action', '/cart'))
+  }
+  
   document.querySelectorAll("input[name='checkout'][type='submit']")[0].id = 'checkout_btn'
 
   let inputElement = document.createElement('input')
